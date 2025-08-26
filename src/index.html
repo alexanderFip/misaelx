@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impulsa tu Negocio en Línea</title>
+    <link rel="icon" href="img/icono.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap">
+    <style>
+        /* Variables de colores pastel */
+        :root {
+            --pastel-pink: #FFC0CB;
+            --pastel-blue: #ADD8E6;
+            --pastel-green: #90EE90;
+            --pastel-yellow: #FFFFE0;
+            --dark-text: #2c3e50;
+            --light-text: #f4f6f9;
+            --bg-color: #F8F9FA;
+            --secondary-bg: #E9ECEF;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--dark-text);
+            padding-top: 60px;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Utilidad de sección */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-heading {
+            font-weight: 900;
+            color: var(--dark-text);
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-heading::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--pastel-blue), var(--pastel-pink));
+            margin: 20px auto 0;
+            border-radius: 3px;
+        }
+
+        /* NAVEGACIÓN */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            backdrop-filter: blur(5px);
+            transition: all 0.4s ease;
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(255, 255, 255, 0.9) !important;
+            padding: 0.5rem 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .navbar-brand h1 {
+            font-weight: 900;
+            color: var(--dark-text);
+            font-size: 1.5rem;
+            margin: 0;
+            transition: font-size 0.4s ease;
+        }
+        
+        .navbar.scrolled .navbar-brand h1 {
+            font-size: 1.2rem;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            color: var(--dark-text) !important;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--pastel-blue) !important;
+            transform: translateY(-3px);
+        }
+        
+        /* BARRA DE PROGRESO DE LECTURA */
+        .progress-container {
+            position: fixed;
+            top: 56px; /* Ajusta la posición para que esté debajo del navbar */
+            left: 0;
+            width: 100%;
+            height: 5px;
+            z-index: 1030;
+            background-color: transparent;
+        }
+        .progress-bar-scroll {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--pastel-blue), var(--pastel-pink));
+            transition: width 0.2s ease-out;
+        }
+        @media (max-width: 991px) {
+            .progress-container {
+                top: 51px; /* Ajuste para móviles si el navbar es más pequeño */
+            }
+        }
+        
+
+        /* SECCIÓN HERO */
+        .hero-section {
+            background: linear-gradient(135deg, var(--pastel-blue) 0%, var(--pastel-pink) 100%);
+            color: var(--light-text);
+            padding: 200px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-title, .hero-subtitle {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-title {
+            font-weight: 900;
+            font-size: 4.5rem;
+            animation: fadeInScale 1.8s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-top: 20px;
+            animation: fadeInScale 2.2s ease-out;
+        }
+
+        .hero-btn {
+            background-color: var(--dark-text);
+            color: var(--light-text);
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            padding: 16px 45px;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            margin-top: 40px;
+            animation: slideInUp 2s ease-out;
+        }
+
+        .hero-btn:hover {
+            background: linear-gradient(45deg, var(--pastel-green), var(--pastel-yellow));
+            color: var(--dark-text);
+            transform: translateY(-8px) scale(1.08);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        /* TARJETAS (CARDS) */
+        .card {
+            background-color: #fff;
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.5s ease;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-body {
+            padding: 35px;
+        }
+
+        .card-title {
+            font-weight: 800;
+            color: var(--dark-text);
+            text-transform: uppercase;
+        }
+        
+        .card-subtitle {
+            font-weight: 600;
+            color: var(--pastel-blue);
+        }
+
+        .card-list li {
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+        
+        .card-list i {
+            color: var(--pastel-green);
+            font-size: 1.3rem;
+        }
+
+        /* ICONOS Y SECCIONES */
+        .icon-lg {
+            font-size: 4rem;
+            color: var(--pastel-blue);
+            margin-bottom: 25px;
+            transition: transform 0.4s ease;
+        }
+        
+        .card:hover .icon-lg {
+            transform: rotateY(360deg) scale(1.1);
+        }
+
+        .testimonial-card {
+            background-color: var(--secondary-bg);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-quote {
+            color: var(--pastel-pink);
+            font-size: 4rem;
+            line-height: 0;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--dark-text);
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            margin-top: 20px;
+            color: var(--pastel-blue);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ANIMACIONES */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s cubic-bezier(0.68, -0.55, 0.27, 1.55), transform 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+        
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-in {
+            animation: slideInUp 1s ease-out forwards;
+        }
+        
+        /* Animación de la Hero Section */
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        
+        @keyframes slideInUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        /* Estilos del Portafolio (Actualizados) */
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        .portfolio-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+        .portfolio-body {
+            padding: 2rem;
+        }
+        .portfolio-body h5 {
+            font-weight: 700;
+            color: var(--dark-text);
+        }
+        .portfolio-body p {
+            color: #555;
+        }
+
+        /* FOOTER */
+        .new-footer {
+            background-color: var(--secondary-bg);
+            color: var(--dark-text);
+            padding: 80px 0;
+        }
+
+        .new-footer .section-heading {
+            color: var(--dark-text);
+        }
+        
+        .new-footer .social-icon-btn {
+            display: inline-flex;
+            width: 60px;
+            height: 60px;
+            background-color: var(--light-text);
+            color: var(--dark-text);
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 10px;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .new-footer .social-icon-btn:hover {
+            background-color: var(--pastel-blue);
+            color: var(--light-text);
+            transform: translateY(-8px) scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+<body>
+    <header id="inicio">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#inicio">
+                    <h1>MisaelStudio X</h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#inicio">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#conocenos">Conócenos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#beneficios">Beneficios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#portafolio">Portafolio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#servicios">Planes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#testimonios">Testimonios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contacto">Contacto</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="progress-container">
+            <div class="progress-bar-scroll" id="progressBar"></div>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="container text-center">
+            <h2 class="hero-title">
+                Impulsa tu negocio al siguiente nivel <br>con una Página Web Profesional
+            </h2>
+            <p class="hero-subtitle">
+                Diseños modernos, rápidos y optimizados para el crecimiento de tu marca.
+            </p>
+            <a href="#servicios" class="btn hero-btn btn-lg mt-4">Explora nuestros planes</a>
+        </div>
+    </section>
+
+    <section id="conocenos" class="py-5">
+        <div class="container text-center">
+            <h2 class="section-heading animate-on-scroll">Impulsando tu camino en el mundo digital</h2>
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <img src="img/yo.png" class="rounded-circle img-fluid animate-on-scroll" alt="Foto de Alexander">
+                </div>
+                <div class="col-md-6 text-md-start">
+                    <p class="lead text-muted animate-on-scroll">
+                        ¡Hola! Soy Alexander, un estudiante apasionado por el desarrollo web y con muchas ganas de ayudar a emprendedores, negocios y empresas a tener su propia página web.
+                    </p>
+                    <p class="animate-on-scroll">
+                        Aunque estoy comenzando mi camino profesional, ya he desarrollado varios proyectos ficticios con diseños modernos, funcionalidades reales y enfocados en mejorar la experiencia del cliente. Ahora, quiero llevar ese conocimiento al mundo real.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="valores" class="py-5 bg-white">
+        <div class="container text-center">
+            <h2 class="section-heading animate-on-scroll">Nuestros Valores</h2>
+            <div class="row text-center justify-content-center">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 p-4 animate-on-scroll" style="animation-delay: 0.1s;">
+                        <i class="bi bi-person-check-fill icon-lg" style="color: var(--pastel-blue);"></i>
+                        <h5 class="card-title mt-3">Transparencia</h5>
+                        <p class="card-text text-muted">Mantenemos una comunicación clara y constante en cada etapa de tu proyecto. Sin sorpresas, sin costos ocultos.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 p-4 animate-on-scroll" style="animation-delay: 0.3s;">
+                        <i class="bi bi-lightbulb-fill icon-lg" style="color: var(--pastel-green);"></i>
+                        <h5 class="card-title mt-3">Innovación</h5>
+                        <p class="card-text text-muted">Creamos diseños modernos y utilizamos las últimas tecnologías para que tu web no solo funcione, sino que inspire.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 p-4 animate-on-scroll" style="animation-delay: 0.5s;">
+                        <i class="bi bi-heart-fill icon-lg" style="color: var(--pastel-pink);"></i>
+                        <h5 class="card-title mt-3">Pasión</h5>
+                        <p class="card-text text-muted">Amamos lo que hacemos. Cada proyecto recibe el mismo nivel de dedicación y cuidado, como si fuera nuestro.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="beneficios" class="py-5 bg-white">
+        <div class="container text-center">
+            <h2 class="section-heading animate-on-scroll">Descubre los beneficios de tener presencia digital</h2>
+            <div class="row text-center">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 animate-on-scroll" style="animation-delay: 0.1s;">
+                        <div class="card-body">
+                            <i class="bi bi-globe icon-lg"></i>
+                            <h3 class="card-title h5 mt-3">Presencia las 24/7</h3>
+                            <p class="card-text">Tu negocio estará disponible todo el día, todos los días, incluso mientras duermes.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 animate-on-scroll" style="animation-delay: 0.2s;">
+                        <div class="card-body">
+                            <i class="bi bi-people icon-lg"></i>
+                            <h3 class="card-title h5 mt-3">Mayor alcance</h3>
+                            <p class="card-text">Llega a más personas en tu ciudad o incluso en el extranjero.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 animate-on-scroll" style="animation-delay: 0.3s;">
+                        <div class="card-body">
+                            <i class="bi bi-rocket-takeoff icon-lg"></i>
+                            <h3 class="card-title h5 mt-3">Impulsa tus ventas</h3>
+                            <p class="card-text">Más visibilidad y confianza significan más oportunidades de venta.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 animate-on-scroll" style="animation-delay: 0.4s;">
+                        <div class="card-body">
+                            <i class="bi bi-lock icon-lg"></i>
+                            <h3 class="card-title h5 mt-3">Genera confianza</h3>
+                            <p class="card-text">Una página web profesional transmite seriedad y seguridad.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 animate-on-scroll" style="animation-delay: 0.5s;">
+                        <div class="card-body">
+                            <i class="bi bi-phone icon-lg"></i>
+                            <h3 class="card-title h5 mt-3">Diseño responsive</h3>
+                            <p class="card-text">Tus clientes podrán navegar desde celular, tablet o computadora.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 animate-on-scroll" style="animation-delay: 0.6s;">
+                        <div class="card-body">
+                            <i class="bi bi-graph-up icon-lg"></i>
+                            <h3 class="card-title h5 mt-3">Ventaja competitiva</h3>
+                            <p class="card-text">Destácate de los negocios que aún no tienen presencia digital.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portafolio" class="py-5">
+        <div class="container text-center">
+            <h2 class="section-heading animate-on-scroll">Nuestro Portafolio</h2>
+            <p class="lead text-muted animate-on-scroll">Echa un vistazo a algunos de nuestros proyectos destacados.</p>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-5">
+                <div class="col">
+                    <div class="portfolio-item animate-on-scroll" style="animation-delay: 0.1s;">
+                        <img src="img/catalogo.png" alt="Web catálogo" class="img-fluid">
+                        <div class="portfolio-body">
+                            <h5>Una web catálogo</h5>
+                            <p>Catálogo ideal para mostrar productos como ropa, calzado o un menú de restaurante. Diseño elegante, galerías atractivas y secciones organizadas para una mejor visualización.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="portfolio-item animate-on-scroll" style="animation-delay: 0.3s;">
+                        <img src="img/pedidoonline.png" alt="Web de pedidos online" class="img-fluid">
+                        <div class="portfolio-body">
+                            <h5>Web de pedidos online</h5>
+                            <p>Plataforma con fotos y galerías atractivas, carrito de compras y pagos seguros. Permite explorar productos, elegir lo que necesitas y hacer tu compra de manera rápida y confiable.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="portfolio-item animate-on-scroll" style="animation-delay: 0.5s;">
+                        <img src="img/gestion.jpg" alt="Web de gestión" class="img-fluid">
+                        <div class="portfolio-body">
+                            <h5>Web de gestión</h5>
+                            <p>Un sistema robusto para gestionar inventario, monitorear el stock y mantener una base de datos de clientes con historial de compras. Permite buscar, agregar, editar y eliminar productos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios" class="py-5">
+        <div class="container text-center">
+            <h2 class="section-heading animate-on-scroll">¡Planes que se adaptan a tu presupuesto!</h2>
+            <p class="lead mb-5 animate-on-scroll">
+                Nuestros planes están diseñados para impulsar tu marca, atraer más clientes y ayudarte a crecer.
+            </p>
+            <div class="row justify-content-center">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 stagger-in" style="animation-delay: 0.2s;">
+                        <div class="card-body">
+                            <h3 class="card-title h4">Plan Básico</h3>
+                            <p class="card-subtitle">200-400 soles</p>
+                            <ul class="list-unstyled text-start mt-4 card-list">
+                                <li><i class="bi bi-check-circle-fill me-2"></i>Nivel: Fácil (ideal para emprendimientos)</li>
+                                <li><i class="bi bi-check-circle-fill me-2"></i>Hasta 4 páginas.</li>
+                                <li><i class="bi bi-check-circle-fill me-2"></i>Diseño simple y profesional.</li>
+                                <li><i class="bi bi-check-circle-fill me-2"></i>100% adaptable.</li>
+                                <li><i class="bi bi-check-circle-fill me-2"></i>Solo frontend.</li>
+                                <li><i class="bi bi-check-circle-fill me-2"></i>Entrega en 1 a 7 días.</li>
+                            </ul>
+                            <a href="https://wa.me/51955589583?text=Hola,%20estoy%20interesado%20en%20el%20Plan%20B%C3%A1sico%20(200-400%20soles).%20Me%20gustar%C3%ADa%20cotizarlo." class="btn hero-btn w-100 mt-3" data-plan="Básico" target="_blank" rel="noopener noreferrer">Cotizar este Plan</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 stagger-in" style="animation-delay: 0.4s;">
+                        <div class="card-body">
+                            <h3 class="card-title h4">Plan Crecimiento</h3>
+                            <p class="card-subtitle">400-500 soles</p>
+                            <ul class="list-unstyled text-start mt-4 card-list">
+                                <li><i class="bi bi-check-circle-fill me-2"></i>Nivel: Intermedio (para negocios en crecimiento)</li>
+                                <li><i class="bi bi-check-circle-fill me-2"></i>Hasta 8 páginas.</li>
+                                <li><i class="bi bi-check-circle-fill me-2"></i>Diseño moderno y profesional.</li>
+                                <li><i class="bi bi-check-circle-fill me-2"></i>100% adaptable.</li>
+                                <li><i class="bi bi-check-circle-fill me-2"></i>Solo frontend.</li>
+                                <li><i class="bi bi-check-circle-fill me-2"></i>Entrega en 10 a 15 días.</li>
+                            </ul>
+                            <a href="https://wa.me/51955589583?text=Hola,%20estoy%20interesado%20en%20el%20Plan%20Crecimiento%20(400-500%20soles).%20Me%20gustar%C3%ADa%20cotizarlo." class="btn hero-btn w-100 mt-3" data-plan="Crecimiento" target="_blank" rel="noopener noreferrer">Cotizar este Plan</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 stagger-in" style="animation-delay: 0.6s;">
+                        <div class="card-body">
+                            <h3 class="card-title h4">Plan Premium</h3>
+                            <p class="card-subtitle">Desde 600-800 soles</p>
+                            <ul class="list-unstyled text-start mt-4 card-list">
+                                <li><i class="bi bi-check-circle-fill me-2"></i>Nivel: Avanzado (para empresas con alta rentabilidad)</li>
+                                <li><i class="bi bi-check-circle-fill me-2"></i>Más de 8 páginas y sin límite.</li>
+                                <li><i class="bi bi-check-circle-fill me-2"></i>Diseño premium y personalizado.</li>
+                                <li><i class="bi bi-check-circle-fill me-2"></i>100% adaptable.</li>
+                                <li><i class="bi bi-check-circle-fill me-2"></i>Solo frontend.</li>
+                                <li><i class="bi bi-check-circle-fill me-2"></i>Entrega y costo a coordinar.</li>
+                            </ul>
+                            <a href="https://wa.me/51955589583?text=Hola,%20estoy%20interesado%20en%20el%20Plan%20Premium%20(Desde%20600-800%20soles).%20Me%20gustar%C3%ADa%20cotizarlo." class="btn hero-btn w-100 mt-3" data-plan="Premium" target="_blank" rel="noopener noreferrer">Cotizar este Plan</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="text-muted mt-4 animate-on-scroll">
+                Si deseas un <b>sistema web</b> (funcionalidades backend), este se desarrollará previa comunicación, negociación y coordinación.
+            </p>
+        </div>
+    </section>
+
+    <section id="testimonios" class="py-5">
+        <div class="container text-center">
+            <h2 class="section-heading animate-on-scroll">Lo que nuestros clientes dicen</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="testimonial-card animate-on-scroll">
+                        <span class="testimonial-quote">"</span>
+                        <p class="testimonial-text">"El resultado fue mejor de lo que esperábamos. La web es clara, moderna y práctica. Notamos un gran aumento de consultas desde la primera semana!"</p>
+                        <p class="testimonial-author">- Cliente Satisfecho</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cta" class="py-5" style="background: linear-gradient(135deg, var(--pastel-pink), var(--pastel-blue)); color: var(--light-text);">
+        <div class="container text-center animate-on-scroll">
+            <h2 class="section-heading" style="color: var(--light-text);">¿Listo para empezar tu proyecto?</h2>
+            <p class="lead mb-4">
+                Transforma tu idea en realidad. Escríbenos y empecemos a construir la web que tu negocio se merece.
+            </p>
+            <a href="https://wa.me/51955589583?text=Hola,%20quiero%20cotizar%20un%20proyecto%20de%20dise%C3%B1o%20web" class="btn hero-btn btn-lg animate-on-scroll" style="background-color: var(--dark-text); color: var(--light-text); border: none;" target="_blank">
+                ¡Conversemos ahora!
+            </a>
+        </div>
+    </section>
+
+    <footer id="contacto" class="new-footer text-center">
+        <div class="container">
+            <div class="social-icons mb-3 animate-on-scroll">
+                <a href="https://www.facebook.com/cordova.torres.alexander.oliver/" target="_blank" rel="noopener noreferrer" class="social-icon-btn">
+                    <i class="bi bi-facebook"></i>
+                </a>
+                <a href="https://wa.me/51955589583?text=Hola%20Oliver%20Alexander,%20quiero%20informaci%C3%B3n%20sobre%20una%20p%C3%A1gina%20web" target="_blank" rel="noopener noreferrer" class="social-icon-btn">
+                    <i class="bi bi-whatsapp"></i>
+                </a>
+                <a href="https://www.instagram.com/alexanderct_14/" target="_blank" rel="noopener noreferrer" class="social-icon-btn">
+                    <i class="bi bi-instagram"></i>
+                </a>
+                <a href="https://www.tiktok.com/@yoshua_770" target="_blank" rel="noopener noreferrer" class="social-icon-btn">
+                    <i class="bi bi-tiktok"></i>
+                </a>
+            </div>
+            <p class="text-muted mb-0 mt-4 animate-on-scroll">© 2025 MisaelStudio X. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 60,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animación de la barra de navegación al hacer scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // Actualizar la barra de progreso
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+        });
+
+        // IntersectionObserver para animar elementos al hacer scroll
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll(
+                '.animate-on-scroll'
+            );
+            
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        element.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+            });
+
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+
+        // Animación de stagger para las tarjetas de planes
+        document.addEventListener('DOMContentLoaded', () => {
+            const staggerElements = document.querySelectorAll('.stagger-in');
+            const staggerObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationName = 'slideInUp';
+                        entry.target.style.animationFillMode = 'forwards';
+                        entry.target.style.opacity = '1';
+                        staggerObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            staggerElements.forEach(el => {
+                staggerObserver.observe(el);
+            });
+        });
+
+    </script>
+</body>
+</html>
